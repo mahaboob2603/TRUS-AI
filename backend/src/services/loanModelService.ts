@@ -40,14 +40,16 @@ type ScoreContext = {
 
 let cachedModel: LoanModelArtifact | null = null;
 
-const DEFAULT_MODEL_RELATIVE_PATH = "../data/artifacts/loan_model.json";
+const resolveDefaultArtifactPath = (): string => {
+  return path.resolve(__dirname, "../../../data/artifacts/loan_model.json");
+};
 
 const resolveModelPath = (): string => {
   const explicit = process.env.LOAN_MODEL_PATH;
   if (explicit && explicit.trim().length > 0) {
     return path.resolve(explicit);
   }
-  return path.resolve(process.cwd(), DEFAULT_MODEL_RELATIVE_PATH);
+  return resolveDefaultArtifactPath();
 };
 
 const parseArtifact = (raw: string): LoanModelArtifact => {
@@ -136,14 +138,21 @@ const computeCategoricalContribution = (
 ): ScoreContext => {
   const resolved = typeof value === "string" ? value.trim() : value ?? "unknown";
   const label = String(resolved);
-  const weight = spec.weights[label] ?? 0;
+  const labelLower = label.toLowerCase();
+
+  let matchedKey: string | undefined = label in spec.weights ? label : undefined;
+  if (!matchedKey) {
+    matchedKey = Object.keys(spec.weights).find((k) => k.toLowerCase() === labelLower);
+  }
+
+  const weight = matchedKey ? spec.weights[matchedKey] ?? 0 : 0;
 
   return {
     rawValue: value,
     resolvedValue: weight !== 0 ? 1 : 0,
     normalizedValue: weight,
     contribution: weight,
-    isDefault: !(label in spec.weights),
+    isDefault: matchedKey === undefined,
     displayValue: label,
   };
 };
