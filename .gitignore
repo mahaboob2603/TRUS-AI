@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.local
+.env.production
+dist/
+.next/
+.cache/
+package-lock.json
+logs/
+tmp/
+.DS_Store
+
