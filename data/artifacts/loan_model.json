@@ -1,0 +1,90 @@
+{
+  "version": "v1.0.0",
+  "bias": -0.75,
+  "numeric": {
+    "ApplicantIncome": {
+      "mean": 5403.0,
+      "std": 6100.0,
+      "weight": 0.62,
+      "description": "Primary applicant monthly income"
+    },
+    "CoapplicantIncome": {
+      "mean": 1621.0,
+      "std": 2926.0,
+      "weight": 0.31,
+      "description": "Co-applicant monthly income"
+    },
+    "LoanAmount": {
+      "mean": 146.0,
+      "std": 85.0,
+      "weight": -0.58,
+      "description": "Loan amount requested (thousands)"
+    },
+    "Loan_Amount_Term": {
+      "mean": 342.0,
+      "std": 65.0,
+      "weight": 0.18,
+      "description": "Loan term in months"
+    },
+    "Credit_History": {
+      "mean": 0.84,
+      "std": 0.36,
+      "weight": 2.1,
+      "description": "Whether the applicant has a positive credit history"
+    },
+    "Dependents": {
+      "mean": 0.75,
+      "std": 0.9,
+      "weight": -0.2,
+      "description": "Number of dependents supported"
+    }
+  },
+  "categorical": {
+    "Gender": {
+      "weights": {
+        "Male": 0.05,
+        "Female": 0
+      },
+      "description": "Applicant gender"
+    },
+    "Married": {
+      "weights": {
+        "Yes": 0.22,
+        "No": -0.05
+      },
+      "description": "Marital status"
+    },
+    "Education": {
+      "weights": {
+        "Graduate": 0.18,
+        "Not Graduate": -0.26
+      },
+      "description": "Education level"
+    },
+    "Self_Employed": {
+      "weights": {
+        "Yes": -0.18,
+        "No": 0.05
+      },
+      "description": "Self employment status"
+    },
+    "Property_Area": {
+      "weights": {
+        "Urban": 0.3,
+        "Semiurban": 0.24,
+        "Rural": -0.28
+      },
+      "description": "Type of property location"
+    }
+  },
+  "thresholds": {
+    "approved": 0.65,
+    "manualReview": 0.5
+  },
+  "metadata": {
+    "dataset": "Kaggle Loan Prediction Problem Dataset",
+    "trainedAt": "2025-11-13T00:00:00.000Z",
+    "notes": "Lightweight heuristic logistic-style model for hackathon MVP use only. The weights approximate feature influence using summary statistics from the Kaggle dataset."
+  }
+}
+
