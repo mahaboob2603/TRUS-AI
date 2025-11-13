@@ -9,7 +9,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TRUS.AI Studio",
-  description: "Transparent Responsible Unified System for AI in Banking"
+  description: "Transparent Responsible Unified System for AI in Banking",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 type RootLayoutProps = {
