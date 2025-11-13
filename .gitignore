@@ -1,8 +1,8 @@
 node_modules/
 .next/
 dist/
-out/
 build/
+out/
 .cache/
 .env
 .env.local
