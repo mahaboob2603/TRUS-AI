@@ -1,16 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Removed redirect to show welcome page
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/',
-  //       destination: '/applications',
-  //       permanent: false,
-  //     },
-  //   ];
-  // },
+  async rewrites() {
+    const backendOrigin =
+      process.env.NEXT_PUBLIC_BACKEND_URL ||
+      process.env.BACKEND_URL ||
+      'http://localhost:4000';
+
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${backendOrigin}/api/:path*`,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
